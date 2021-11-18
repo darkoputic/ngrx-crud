@@ -2,19 +2,45 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { TokenInterceptor } from "./shared/token.interceptor";
+import { CoreModule } from "./core/core.module";
+import { AppComponent } from "./core/containers";
+import { RouterModule } from "@angular/router";
+
+import { metaReducers, ROOT_REDUCERS } from './reducers';
+import { EffectsModule } from "@ngrx/effects";
+import { RouterEffects } from "./core/effects";
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule,
     AppRoutingModule,
-    StoreModule
+    HttpClientModule,
+    CoreModule,
+    StoreModule.forRoot(ROOT_REDUCERS, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+        strictActionWithinNgZone: true,
+        strictActionTypeUniqueness: true,
+      },
+    }),
+    EffectsModule.forRoot([RouterEffects]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
