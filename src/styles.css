@@ -16,8 +16,16 @@ html {
   height: 30px !important;
 }
 
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  display: flex;
+  padding: 50px;
 }
