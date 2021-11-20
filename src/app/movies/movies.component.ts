@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-movies',
-  template: `
+  template: `    
     <app-movies-list></app-movies-list>
   `
 })

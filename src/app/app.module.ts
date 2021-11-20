@@ -10,9 +10,10 @@ import { CoreModule } from "./core/core.module";
 import { AppComponent } from "./core/containers";
 import { RouterModule } from "@angular/router";
 
-import { metaReducers, ROOT_REDUCERS } from './reducers';
-import { EffectsModule } from "@ngrx/effects";
-import { RouterEffects } from "./core/effects";
+import { environment } from "../environments/environment";
+
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { appReducer } from "./store/app.state";
 
 @NgModule({
   imports: [
@@ -22,16 +23,10 @@ import { RouterEffects } from "./core/effects";
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    StoreModule.forRoot(ROOT_REDUCERS, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateSerializability: true,
-        strictActionSerializability: true,
-        strictActionWithinNgZone: true,
-        strictActionTypeUniqueness: true,
-      },
-    }),
-    EffectsModule.forRoot([RouterEffects]),
+    StoreModule.forRoot(appReducer),
+    StoreDevtoolsModule.instrument({
+      logOnly: environment.production
+    })
   ],
   providers: [
     {
@@ -40,7 +35,7 @@ import { RouterEffects } from "./core/effects";
       multi: true,
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

@@ -4,23 +4,20 @@ import { Movie } from "../models/movie.model";
 @Component({
   selector: 'app-movie-item',
   template: `
-    <mat-card class="example-card">
+    <mat-card class="example-card" *ngIf="movie">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-title>{{movie.title}}</mat-card-title>
         <mat-card-subtitle>Dog Breed</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
       <mat-card-content>
         <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
+          {{movie.description}}
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
+        <button mat-button>Watch later</button>
       </mat-card-actions>
     </mat-card>
   `,
@@ -28,6 +25,7 @@ import { Movie } from "../models/movie.model";
       `
       .example-card {
         max-width: 400px;
+        margin-right: 50px;
       }
 
       .example-header-image {

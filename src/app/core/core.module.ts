@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { MaterialModule } from "../shared/modules/material.module";
-
 import { AppComponent, NotFoundPageComponent } from "./containers";
 import { LayoutComponent, NavbarComponent } from "./components";
 import { RouterModule } from "@angular/router";
+import { MaterialModule } from "../shared/modules";
+import { CounterModule } from "../counter/counter.module";
 
 export const COMPONENTS = [
   AppComponent,
@@ -20,6 +19,7 @@ export const COMPONENTS = [
     CommonModule,
     MaterialModule,
     RouterModule,
+    CounterModule,
   ],
   exports: COMPONENTS
 })

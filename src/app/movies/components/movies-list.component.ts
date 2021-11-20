@@ -1,32 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from "../models/movie.model";
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
+import { AppState } from "../../store/app.state";
+import { Movie } from "../models/movie.model";
+import { getMovies } from "../state/movie.selector";
 
 @Component({
   selector: 'app-movies-list',
   template: `
-    <div class="movie-container">
-      <app-movie-item *ngFor="let movie of movies | async"
+    <div class="container">
+      <app-movie-item *ngFor="let movie of movies$ | async"
                       [movie]="movie"></app-movie-item>
     </div>
   `,
-  styles: [
-      `
-      .movie-container {
-        padding: 50px;
-      }
-    `
-  ]
 })
 export class MoviesListComponent implements OnInit {
 
-  movies: Observable<Movie[]> | undefined;
+  movies$: Observable<Movie[]> | undefined;
 
-  constructor(private store: Store) {
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
+    this.movies$ = this.store.select(getMovies);
   }
 
 }
