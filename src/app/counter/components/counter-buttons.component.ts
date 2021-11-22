@@ -7,9 +7,9 @@ import { AppState } from "../../store/app.state";
   selector: 'app-counter-buttons',
   template: `
     <div class="buttons-container">
-      <button (click)="onIncrement()">Add</button>
-      <button (click)="onDecrement()">Remove</button>
-      <button (click)="onReset()">Reset</button>
+      <button (click)="onIncrement()" mat-button>Add</button>
+      <button (click)="onDecrement()" mat-button>Remove</button>
+      <button (click)="onReset()" mat-button>Reset</button>
     </div>
   `,
   styles: [`

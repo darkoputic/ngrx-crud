@@ -8,7 +8,10 @@ import { getMovies } from "../state/movie.selector";
 @Component({
   selector: 'app-movies-list',
   template: `
-    <div class="container">
+    <div class="container" [routerLink]="['/movies/add']">
+      <button mat-button>Add movie</button>
+    </div>
+    <div class="container d-flex">
       <app-movie-item *ngFor="let movie of movies$ | async"
                       [movie]="movie"></app-movie-item>
     </div>

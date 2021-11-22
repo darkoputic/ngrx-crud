@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-movies',
-  template: `    
-    <app-movies-list></app-movies-list>
+  template: `
+    <router-outlet></router-outlet>
   `
 })
 export class MoviesComponent implements OnInit {

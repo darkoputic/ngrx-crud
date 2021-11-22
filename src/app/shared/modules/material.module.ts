@@ -8,6 +8,8 @@ import { MatListModule } from "@angular/material/list";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatRippleModule } from "@angular/material/core";
 
 export const MODULES = [
   MatInputModule,
@@ -19,6 +21,8 @@ export const MODULES = [
   MatToolbarModule,
   MatProgressSpinnerModule,
   MatDialogModule,
+  MatFormFieldModule,
+  MatRippleModule,
 ];
 
 @NgModule({

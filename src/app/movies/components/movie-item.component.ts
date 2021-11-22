@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Movie } from "../models/movie.model";
+import { Store } from "@ngrx/store";
+import { AppState } from "../../store/app.state";
+import { deleteMovie } from "../state/movie.actions";
 
 @Component({
   selector: 'app-movie-item',
@@ -17,7 +20,8 @@ import { Movie } from "../models/movie.model";
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>Watch later</button>
+        <button mat-button [routerLink]="['/movies/edit', movie.id]">Update movie</button>
+        <button mat-button (click)="onDeleteMovie(movie)">Delete movie</button>
       </mat-card-actions>
     </mat-card>
   `,
@@ -37,4 +41,15 @@ import { Movie } from "../models/movie.model";
 })
 export class MovieItemComponent {
   @Input() movie: Movie | undefined;
+
+  constructor(private store: Store<AppState>) {
+  }
+
+  onDeleteMovie(movie: Movie): void {
+    if (confirm('Are you sure you want to delete?')) {
+      const id = movie.id;
+      console.log('delete post');
+      this.store.dispatch(deleteMovie({id}));
+    }
+  }
 }

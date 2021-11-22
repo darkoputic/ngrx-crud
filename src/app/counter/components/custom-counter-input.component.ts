@@ -12,11 +12,11 @@ import { AppState } from "../../store/app.state";
     <div>
       <div>{{channelName$ | async}}</div>
       <input type="number" placeholder="Enter text" [(ngModel)]="value">
-      <button (click)="onAdd()">Add to counter</button>
+      <button (click)="onAdd()" mat-button>Add to counter</button>
     </div>
 
     <div>
-      <button (click)="onChangeChannelName()">change channel name</button>
+      <button (click)="onChangeChannelName()" mat-button>change channel name</button>
     </div>
   `
 })
