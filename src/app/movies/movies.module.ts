@@ -5,26 +5,35 @@ import { MaterialModule } from "../shared/modules";
 import { MoviesRoutingModule } from "./movies-routing.module";
 
 import {
+  MovieAddComponent,
   MovieFormComponent,
   MovieItemComponent,
   MoviesListComponent
 } from "./components";
 import { CounterModule } from "../counter/counter.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { StoreModule } from "@ngrx/store";
+import { movieReducer } from "./state/movie.reducer";
+import { MOVIE_STATE_NAME } from "./state/movie.selector";
 
 export const COMPONENTS = [
   MoviesComponent,
   MovieFormComponent,
   MoviesListComponent,
-  MovieItemComponent
+  MovieItemComponent,
+  MovieAddComponent
 ];
 
 @NgModule({
   declarations: COMPONENTS,
   imports: [
     CommonModule,
-    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     MoviesRoutingModule,
     CounterModule,
+    MaterialModule,
+    StoreModule.forFeature(MOVIE_STATE_NAME, movieReducer)
   ]
 })
 export class MoviesModule {

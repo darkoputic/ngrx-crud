@@ -5,6 +5,7 @@ import { LayoutComponent, NavbarComponent } from "./components";
 import { RouterModule } from "@angular/router";
 import { MaterialModule } from "../shared/modules";
 import { CounterModule } from "../counter/counter.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 export const COMPONENTS = [
   AppComponent,
@@ -17,6 +18,8 @@ export const COMPONENTS = [
   declarations: COMPONENTS,
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     RouterModule,
     CounterModule,

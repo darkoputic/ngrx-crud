@@ -14,6 +14,7 @@ import { environment } from "../environments/environment";
 
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { appReducer } from "./store/app.state";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -23,6 +24,8 @@ import { appReducer } from "./store/app.state";
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production

@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'selected-movies',
-    component: CounterComponent
+    component: CounterComponent,
   },
   {
     path: '**',
