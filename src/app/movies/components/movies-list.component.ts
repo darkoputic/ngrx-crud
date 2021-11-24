@@ -4,6 +4,9 @@ import { Store } from "@ngrx/store";
 import { AppState } from "../../store/app.state";
 import { Movie } from "../models/movie.model";
 import { getMovies } from "../state/movie.selector";
+import { loadMovies } from "../state/movie.actions";
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { AuthService } from "../../shared/auth.service";
 
 @Component({
   selector: 'app-movies-list',
@@ -21,11 +24,25 @@ export class MoviesListComponent implements OnInit {
 
   movies$: Observable<Movie[]> | undefined;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private fireAuth: AngularFireAuth,
+              private store: Store<AppState>,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.movies$ = this.store.select(getMovies);
+    this.signInAnonymously();
   }
 
+  signInAnonymously(): void {
+    this.authService.anonymousLogin()
+      .then(() => {
+        console.log('successfully logged in');
+
+        this.movies$ = this.store.select(getMovies);
+        this.store.dispatch(loadMovies());
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 }
