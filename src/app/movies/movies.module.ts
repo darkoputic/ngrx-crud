@@ -15,6 +15,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { StoreModule } from "@ngrx/store";
 import { movieReducer } from "./state/movie.reducer";
 import { MOVIE_STATE_NAME } from "./state/movie.selector";
+import { EffectsModule } from "@ngrx/effects";
+import { MovieEffects } from "./state/movie.effects";
 
 export const COMPONENTS = [
   MoviesComponent,
@@ -33,7 +35,8 @@ export const COMPONENTS = [
     MoviesRoutingModule,
     CounterModule,
     MaterialModule,
-    StoreModule.forFeature(MOVIE_STATE_NAME, movieReducer)
+    StoreModule.forFeature(MOVIE_STATE_NAME, movieReducer),
+    EffectsModule.forFeature([MovieEffects])
   ]
 })
 export class MoviesModule {

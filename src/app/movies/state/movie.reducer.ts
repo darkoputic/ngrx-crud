@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./movie.state";
-import { addMovie, deleteMovie, editMovie } from "./movie.actions";
+import { addMovie, deleteMovie, editMovie, loadMoviesSuccess } from "./movie.actions";
 
 const _movieReducer = createReducer(
   initialState,
@@ -31,6 +31,12 @@ const _movieReducer = createReducer(
     return {
       ...state,
       movies: updatedMovies
+    }
+  }),
+  on(loadMoviesSuccess, (state, action) => {
+    return {
+      ...state,
+      movies: action.movies
     }
   })
 );

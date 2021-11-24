@@ -4,6 +4,8 @@ import { Movie } from "../models/movie.model";
 export const ADD_MOVIE_ACTION = '[movie page] add movie';
 export const EDIT_MOVIE_ACTION = '[movie page] edit movie';
 export const DELETE_MOVIE_ACTION = '[movie page] delete movie';
+export const LOAD_MOVIES = '[movie page] load movies';
+export const LOAD_MOVIES_SUCCESS = '[movie page] load movies success';
 
 export const addMovie = createAction(
   ADD_MOVIE_ACTION,
@@ -18,4 +20,13 @@ export const editMovie = createAction(
 export const deleteMovie = createAction(
   DELETE_MOVIE_ACTION,
   props<{ id: any }>()
+);
+
+export const loadMovies = createAction(
+  LOAD_MOVIES
+);
+
+export const loadMoviesSuccess = createAction(
+  LOAD_MOVIES_SUCCESS,
+  props<{ movies: Movie[] }>()
 );
