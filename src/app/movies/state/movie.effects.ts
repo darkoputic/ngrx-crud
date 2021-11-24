@@ -24,7 +24,6 @@ export class MovieEffects {
       mergeMap((action) => {
         return this.movieService.getMovies().pipe(
           map((movies) => {
-            console.log('Movies effects ->', movies);
             return loadMoviesSuccess({movies})
           })
         )
@@ -38,7 +37,6 @@ export class MovieEffects {
       mergeMap((action) => {
         return this.movieService.addMovie(action.movie).pipe(
           map((data) => {
-            console.log(data);
             const movie = {...action.movie, id: data.name}
 
             return addMovieSuccess({movie});
