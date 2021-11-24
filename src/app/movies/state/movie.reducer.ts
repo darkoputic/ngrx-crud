@@ -1,19 +1,25 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./movie.state";
-import { addMovie, deleteMovie, editMovie, loadMoviesSuccess } from "./movie.actions";
+import {
+  addMovieSuccess,
+  deleteMovie,
+  deleteMovieSuccess,
+  editMovie,
+  editMovieSuccess,
+  loadMoviesSuccess
+} from "./movie.actions";
 
 const _movieReducer = createReducer(
   initialState,
-  on((addMovie), (state, action) => {
+  on((addMovieSuccess), (state, action) => {
     let movie = {...action.movie};
-    movie.id = (state.movies.length + 1).toString();
 
     return {
       ...state,
       movies: [...state.movies, movie]
     }
   }),
-  on(editMovie, (state, action) => {
+  on(editMovieSuccess, (state, action) => {
     const updatedMovies = state.movies.map(movie => {
       return movie.id === action.movie.id ? action.movie : movie;
     });
@@ -23,7 +29,7 @@ const _movieReducer = createReducer(
       movies: updatedMovies
     }
   }),
-  on(deleteMovie, (state, {id}) => {
+  on(deleteMovieSuccess, (state, {id}) => {
     const updatedMovies = state.movies.filter(movie => {
       return movie.id !== id;
     });

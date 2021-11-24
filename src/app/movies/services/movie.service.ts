@@ -28,4 +28,21 @@ export class MovieService {
         })
       )
   }
+
+  addMovie(movie: Movie): Observable<{ name: string }> {
+    return this.http.post<{ name: string }>(`${ this.apiURL }/movies.json`, movie)
+  }
+
+  editMovie(movie: Movie) {
+    const data = {
+      // @ts-ignore
+      [movie.id]: {title: movie.title, description: movie.description}
+    };
+
+    return this.http.patch(`${ this.apiURL }/movies.json`, data);
+  }
+
+  deleteMovie(movieId: string) {
+    return this.http.delete(`${ this.apiURL }/movies/${ movieId }.json`);
+  }
 }

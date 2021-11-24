@@ -1,8 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { MovieService } from "../services/movie.service";
-import { loadMovies, loadMoviesSuccess } from "./movie.actions";
-import { map, mergeMap } from "rxjs/operators";
+import {
+  addMovie,
+  addMovieSuccess,
+  deleteMovie, deleteMovieSuccess,
+  editMovie,
+  editMovieSuccess,
+  loadMovies,
+  loadMoviesSuccess
+} from "./movie.actions";
+import { map, mergeMap, switchMap } from "rxjs/operators";
 
 @Injectable()
 export class MovieEffects {
@@ -16,11 +24,56 @@ export class MovieEffects {
       mergeMap((action) => {
         return this.movieService.getMovies().pipe(
           map((movies) => {
-            console.log(movies);
+            console.log('Movies effects ->', movies);
             return loadMoviesSuccess({movies})
           })
         )
       })
     );
-  }, {dispatch: false});
+  });
+
+  addMovie$ = createEffect(() => {
+    return this.actoins$.pipe(
+      ofType(addMovie),
+      mergeMap((action) => {
+        return this.movieService.addMovie(action.movie).pipe(
+          map((data) => {
+            console.log(data);
+            const movie = {...action.movie, id: data.name}
+
+            return addMovieSuccess({movie});
+          })
+        )
+      })
+    )
+  });
+
+  editMovie$ = createEffect(() => {
+    return this.actoins$.pipe(
+      ofType(editMovie),
+      switchMap((action) => {
+        return this.movieService.editMovie(action.movie).pipe(
+          map((data) => {
+            const movie = action.movie;
+
+            return editMovieSuccess({movie})
+          })
+        )
+      })
+    )
+  });
+
+  deleteMovie$ = createEffect(() => {
+    return this.actoins$.pipe(
+      ofType(deleteMovie),
+      switchMap((action) => {
+        return this.movieService.deleteMovie(action.id).pipe(
+          map((data) => {
+            const id = action.id;
+            return deleteMovieSuccess({id})
+          })
+        )
+      })
+    )
+  })
 }
