@@ -20,23 +20,27 @@ import { deleteMovie } from "../state/movie.actions";
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button [routerLink]="['/movies/edit', movie.id]">Update movie</button>
-        <button mat-button (click)="onDeleteMovie(movie)">Delete movie</button>
+        <button mat-stroked-button [routerLink]="['/movies/edit', movie.id]">Update movie</button>
+        <button mat-stroked-button (click)="onDeleteMovie(movie)" color="warn">Delete movie</button>
       </mat-card-actions>
     </mat-card>
   `,
-  styles: [
-      `
-      .example-card {
-        max-width: 400px;
-        margin-right: 50px;
-      }
+  styles: [`
+    mat-card-actions {
+      display: flex;
+      justify-content: end;
+    }
 
-      .example-header-image {
-        background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-        background-size: cover;
-      }
-    `
+    .example-card {
+      max-width: 400px;
+      margin-right: 50px;
+    }
+
+    .example-header-image {
+      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+      background-size: cover;
+    }
+  `
   ]
 })
 export class MovieItemComponent {

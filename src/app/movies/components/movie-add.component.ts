@@ -45,6 +45,12 @@ import { getMovieById } from "../state/movie.selector";
       </mat-card>
     </div>
   `,
+  styles: [`
+    mat-card {
+      max-width: 400px;
+    }
+
+  `]
 })
 export class MovieAddComponent implements OnInit {
 
@@ -63,7 +69,6 @@ export class MovieAddComponent implements OnInit {
     this.initForm();
 
     this.route.paramMap.subscribe(params => {
-      console.log(params.get('id'));
       const id = params.get('id');
 
       if (id) {

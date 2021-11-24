@@ -12,11 +12,12 @@ import { AuthService } from "../../shared/auth.service";
   selector: 'app-movies-list',
   template: `
     <div class="container" [routerLink]="['/movies/add']">
-      <button mat-button>Add movie</button>
-    </div>
-    <div class="container d-flex">
-      <app-movie-item *ngFor="let movie of movies$ | async"
-                      [movie]="movie"></app-movie-item>
+      <button mat-stroked-button color="primary">Add movie</button>
+
+      <div class="d-flex" style="margin-top: 50px">
+        <app-movie-item *ngFor="let movie of movies$ | async"
+                        [movie]="movie"></app-movie-item>
+      </div>
     </div>
   `,
 })
