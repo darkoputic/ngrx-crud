@@ -12,10 +12,6 @@ import { Component, OnInit } from '@angular/core';
                 [routerLink]="'/movies'"
                 [routerLinkActive]="['active']">Movies
         </button>
-        <button mat-icon-button
-                [routerLink]="'/selected-movies'"
-                [routerLinkActive]="['active']">Watch later
-        </button>
       </div>
     </mat-toolbar>
   `,

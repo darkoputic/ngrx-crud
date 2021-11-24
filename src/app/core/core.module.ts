@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppComponent, NotFoundPageComponent } from "./containers";
-import { LayoutComponent, NavbarComponent } from "./components";
-import { RouterModule } from "@angular/router";
-import { MaterialModule } from "../shared/modules";
-import { CounterModule } from "../counter/counter.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AppComponent, NotFoundPageComponent } from './containers';
+import { LayoutComponent, NavbarComponent } from './components';
+import { RouterModule } from '@angular/router';
+import { MaterialModule } from '../shared/modules';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export const COMPONENTS = [
   AppComponent,
@@ -22,7 +21,6 @@ export const COMPONENTS = [
     ReactiveFormsModule,
     MaterialModule,
     RouterModule,
-    CounterModule,
   ],
   exports: COMPONENTS
 })
